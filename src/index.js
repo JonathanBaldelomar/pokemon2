@@ -1,25 +1,27 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { BrowserRouter } from 'react-router-dom';
-import { ThemeProvider } from './components/context/ThemeContext';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter } from "react-router-dom";
+import { ThemeProvider } from "./components/context/ThemeContext";
+import configureStore from './components/redux/configureStore';
+import { Provider as ReduxProvider } from 'react-redux';
 
-// import Header from './components/common/Header';
-// import Footer from './components/common/Footer';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+
+const store = configureStore();
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <BrowserRouter>
-    <ThemeProvider>
-      {/* <Header/> */}
-        <App />
-      {/* <Footer/> */}
-    </ThemeProvider>
-    </BrowserRouter>
-  </React.StrictMode>
+  <ReduxProvider store={store}>
+    <React.StrictMode>
+      <BrowserRouter>
+        <ThemeProvider>
+          <App />
+        </ThemeProvider>
+      </BrowserRouter>
+    </React.StrictMode>
+  </ReduxProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

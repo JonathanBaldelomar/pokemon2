@@ -1,16 +1,31 @@
 import React, { useContext } from 'react';
 import ThemeContext from '../context/ThemeContext';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { Button } from 'bootstrap';
+import PokemonList from './Grid';
 
-function FavoritePage () {
-  const data = useContext(ThemeContext); 
+
+function FavoritePage({ favorites }) {
   return (
-    <div className={data.theme}>
-        <h2>Favorite</h2>
-        <p>
-            This is a favorite think.
-        </p>
+    <div>
+      <h2>Favorite</h2>
+      <button onClick={() => console.log(favorites)}>
+        F
+      </button>
+      <PokemonList pokemonList={favorites} />
     </div>
   )
 }
 
-export default FavoritePage;
+FavoritePage.propTypes = {
+  favorites: PropTypes.array
+}
+
+function mapStateToProps(state) {
+  return {
+    favorites: state.favorites,
+  };
+}
+
+export default connect(mapStateToProps)(FavoritePage);

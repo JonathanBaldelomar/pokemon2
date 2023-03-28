@@ -1,6 +1,6 @@
 import { useState } from "react";
-import React, { useContext } from 'react';
-import ThemeContext from './context/ThemeContext';
+import React from 'react';
+import "./login.css";
 
 function SignInComponent(props) {
     const [email, setEmail] = useState("");
@@ -9,23 +9,23 @@ function SignInComponent(props) {
     const [emailErrorS, setEmailError] = useState("");
     const [passwordErrorS, setPasswordError] = useState("");
 
-    const handleEmailInputChange = function(e) {
+    const handleEmailInputChange = function (e) {
         console.log("Hi from handleEmailInputChange");
         setEmail(e.target.value);
     }
 
-    const handlePasswordInputChange = function(e) {
+    const handlePasswordInputChange = function (e) {
         console.log("Hi from handlePasswordInputChange");
         console.log(e.target.value);
         setPassword(e.target.value);
     }
 
-    const handleRememberMeInputChange = function(e) {
+    const handleRememberMeInputChange = function (e) {
         console.log("Hi from handleRememberMeInputChange");
         setRememberMe(!rememberMe);
     }
 
-    const handleSubmit = function(e) {
+    const handleSubmit = function (e) {
         let emailError = "";
         let passwordError = "";
 
@@ -41,34 +41,33 @@ function SignInComponent(props) {
         if (emailError || passwordError) {
             setEmailError(emailError);
             setPasswordError(passwordError);
-            alert(JSON.stringify({emailError: emailErrorS, passwordError: passwordErrorS}));
+            alert(JSON.stringify({ emailError: emailErrorS, passwordError: passwordErrorS }));
             e.preventDefault();
         } else {
-            alert(JSON.stringify({email: email, password: password, rememberMe: rememberMe}))
+            alert(JSON.stringify({ email: email, password: password, rememberMe: rememberMe }))
         }
     }
-    
-    const data = useContext(ThemeContext); 
+
     return (
-        <div className={data.theme}>
+        <div class="form">
             <title>{"Sign In"}</title>
             <form onSubmit={handleSubmit}>
                 <label>Username: </label>
-                <input type={"email"}
-                       value={email}
-                       onChange={handleEmailInputChange} 
+                <input type={"text"}
+                    value={email}
+                    onChange={handleEmailInputChange}
                 />
                 <br></br>
                 <label>Password: </label>
                 <input type={"password"}
-                       value={password}
-                       onChange={handlePasswordInputChange} 
+                    value={password}
+                    onChange={handlePasswordInputChange}
                 />
                 <br></br>
                 <label>
                     <input type="checkbox"
-                       checked={rememberMe}
-                       onChange={handleRememberMeInputChange} 
+                        checked={rememberMe}
+                        onChange={handleRememberMeInputChange}
                     />
                     Remember me
                 </label>

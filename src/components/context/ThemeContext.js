@@ -5,7 +5,7 @@ const ThemeContext = createContext();
 const initialTheme = 'light';
 
 const ThemeProvider = ({ children }) => {
-  
+
   const [theme, setTheme] = useState(initialTheme);
 
   const handleTheme = (e) => {
@@ -16,10 +16,10 @@ const ThemeProvider = ({ children }) => {
     }
   };
 
-  const data = {theme, handleTheme};
+  const data = { theme, handleTheme };
 
   return <ThemeContext.Provider value={data}>{children}</ThemeContext.Provider>;
 };
 
-export {ThemeProvider};
+export { ThemeProvider };
 export default ThemeContext;
